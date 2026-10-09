@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // An admin is any signed-in user whose uid has a document at stores/{storeId}/admins/{uid}.
+    // Create that document manually in the Firebase console (see README / docs/FIREBASE_SETUP.md).
+    function isAdmin(storeId) {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/stores/$(storeId)/admins/$(request.auth.uid));
+    }
+
+    // Guest checkout: customers may CREATE an order that matches this shape, and nothing else.
+    function validOrder() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['orderNumber','customer','items','subtotal','total','currency','status','stockReduced','createdAt','date','time'])
+        && d.status == 'new'
+        && d.stockReduced == false
+        && d.createdAt == request.time
+        && d.items is list && d.items.size() > 0 && d.items.size() <= 50
+        && d.customer.name is string && d.customer.name.size() >= 2 && d.customer.name.size() <= 100
+        && d.customer.phone is string && d.customer.phone.size() >= 10 && d.customer.phone.size() <= 16
+        && d.customer.address is string && d.customer.address.size() <= 300
+        && d.customer.landmark is string && d.customer.landmark.size() <= 200
+        && d.customer.notes is string && d.customer.notes.size() <= 500
+        && d.total is number && d.total >= 0;
+    }
+
+    match /stores/{storeId} {
+      match /settings/{docId}   { allow read: if true;  allow write: if isAdmin(storeId); }
+      match /categories/{id}    { allow read: if resource.data.active == true || isAdmin(storeId); allow write: if isAdmin(storeId); }
+      match /banners/{id}       { allow read: if resource.data.active == true || isAdmin(storeId); allow write: if isAdmin(storeId); }
+      match /products/{id}      { allow read: if resource.data.status == 'active' || isAdmin(storeId); allow write: if isAdmin(storeId); }
+      match /orders/{id}        { allow create: if validOrder(); allow read, update, delete: if isAdmin(storeId); }
+      // A signed-in user may only check whether THEIR OWN uid is listed. Nobody can write from the client.
+      match /admins/{uid}       { allow get: if request.auth != null && request.auth.uid == uid; allow write: if false; }
+    }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}

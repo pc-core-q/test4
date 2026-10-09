@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /cart.html
+Disallow: /checkout.html
+# After deploying, add:  Sitemap: https://YOUR-DOMAIN/sitemap.xml   (see docs/DEPLOYMENT.md)

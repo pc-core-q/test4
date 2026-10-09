@@ -1,0 +1,1 @@
+{ "name": "store-template", "private": true, "type": "module", "scripts": { "test": "node tests/logic.test.mjs", "serve": "python3 -m http.server 8080" } }

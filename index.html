@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المتجر</title>
+<meta name="description" content="">
+<meta name="theme-color" content="#1d2b3a">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<a class="skip" href="#main">تخطي إلى المحتوى</a>
+<header id="site-header" class="site-header"></header>
+<main id="main">
+  <section id="hero" class="hero" aria-label="العروض"></section>
+  <section id="sec-categories" class="section container" aria-labelledby="h-cats" hidden>
+    <div class="section-head"><h2 id="h-cats">التصنيفات</h2></div>
+    <div id="categories" class="chips"></div>
+  </section>
+  <section id="sec-featured" class="section container" aria-labelledby="h-feat">
+    <div class="section-head"><h2 id="h-feat">منتجات مميزة</h2><a href="shop.html?featured=1">عرض الكل</a></div>
+    <div id="featured" class="grid"></div>
+  </section>
+  <section id="sec-latest" class="section container" aria-labelledby="h-new">
+    <div class="section-head"><h2 id="h-new">وصل حديثاً</h2><a href="shop.html">عرض الكل</a></div>
+    <div id="latest" class="grid"></div>
+  </section>
+  <section id="sec-low" class="section container" aria-labelledby="h-low" hidden>
+    <div class="section-head"><h2 id="h-low">على وشك النفاد</h2></div>
+    <div id="low" class="grid"></div>
+  </section>
+</main>
+<footer id="site-footer" class="site-footer"></footer>
+<script type="module" src="assets/js/pages/home.js"></script>
+</body>
+</html>

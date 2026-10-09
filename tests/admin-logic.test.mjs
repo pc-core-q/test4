@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import { parseOptions, formatOptions, parseSpecs, parseTags, buildProductDoc, validateProduct, stockBucket } from '../services/admin.js';
+assert.deepEqual(parseOptions('المقاس: S, M، L\nاللون: أسود\nbad line\nفارغ:'), [{ name: 'المقاس', values: ['S', 'M', 'L'] }, { name: 'اللون', values: ['أسود'] }]);
+assert.equal(formatOptions(parseOptions('المقاس: S, M')), 'المقاس: S, M');
+assert.deepEqual(parseSpecs('المعالج: A15\nx'), [{ label: 'المعالج', value: 'A15' }]);
+assert.deepEqual(parseTags('قطن، صيفي, قطن'), ['قطن', 'صيفي']);
+const d = buildProductDoc({ name: ' تيشيرت أسود ', price: '25000', discountPrice: '', stock: '7.9', status: 'active', tags: 'قطن', options: 'المقاس: S, M', images: ['u'] });
+assert.equal(d.nameLower, 'تيشيرت أسود'); assert.equal(d.stock, 7); assert.equal(d.discountPrice, 0); assert.deepEqual(d.keywords, ['تيشيرت', 'أسود', 'قطن']);
+assert.deepEqual(Object.keys(validateProduct({ name: '', price: '0', discountPrice: '', stock: '' })).sort(), ['name', 'price', 'stock']);
+assert.ok(validateProduct({ name: 'x', price: '100', discountPrice: '100', stock: '1' }).discountPrice);
+assert.deepEqual([0, 3, 9].map(s => stockBucket(s, 5)), ['out', 'low', 'ok']);
+console.log('admin logic ok');

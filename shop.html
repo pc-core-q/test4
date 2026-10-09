@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المتجر</title>
+<meta name="description" content="">
+<meta name="theme-color" content="#1d2b3a">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<a class="skip" href="#main">تخطي إلى المحتوى</a>
+<header id="site-header" class="site-header"></header>
+<main id="main" class="container">
+  <h1 class="page-title" id="title">جميع المنتجات</h1>
+  <form class="search shop-search" action="shop.html" role="search">
+    <input id="q" name="q" type="search" placeholder="ابحث بالاسم أو التصنيف" aria-label="بحث في المنتجات" autocomplete="off">
+    <button type="submit" class="btn">بحث</button>
+  </form>
+  <nav id="chips" class="chips" aria-label="التصنيفات"></nav>
+  <div id="grid" class="grid" aria-live="polite"></div>
+  <p class="more-wrap"><button id="more" class="btn btn-outline" type="button" hidden>عرض المزيد</button></p>
+</main>
+<footer id="site-footer" class="site-footer"></footer>
+<script type="module" src="assets/js/pages/shop.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>إتمام الطلب</title>
+<meta name="description" content="">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1d2b3a">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<a class="skip" href="#main">تخطي إلى المحتوى</a>
+<header id="site-header" class="site-header"></header>
+<main id="main" class="container">
+  <h1 class="page-title">إتمام الطلب</h1>
+  <div id="checkout-wrap" class="layout-2">
+    <form id="checkout" novalidate>
+      <div class="field"><label for="name">الاسم الكامل <span class="req" aria-hidden="true">*</span></label><input id="name" name="name" autocomplete="name" required aria-describedby="err-name"><span class="err" id="err-name"></span></div>
+      <div class="field"><label for="phone">رقم الهاتف <span class="req" aria-hidden="true">*</span></label><input id="phone" name="phone" type="tel" inputmode="tel" dir="ltr" placeholder="07XXXXXXXXX" autocomplete="tel" required aria-describedby="err-phone"><span class="err" id="err-phone"></span></div>
+      <div class="field"><label for="address">العنوان <span class="req" aria-hidden="true">*</span></label><textarea id="address" name="address" rows="2" autocomplete="street-address" required aria-describedby="err-address"></textarea><span class="err" id="err-address"></span></div>
+      <div class="field"><label for="landmark">أقرب نقطة دالة <span class="req" aria-hidden="true">*</span></label><input id="landmark" name="landmark" required aria-describedby="err-landmark"><span class="err" id="err-landmark"></span></div>
+      <div class="field"><label for="notes">ملاحظات (اختياري)</label><textarea id="notes" name="notes" rows="2"></textarea></div>
+      <button id="submit" class="btn btn-block" type="submit">تأكيد الطلب عبر واتساب</button>
+      <p id="fallback" class="muted small" hidden>تعذر حفظ الطلب. يمكنك <a id="fallback-link" href="#" target="_blank" rel="noopener noreferrer">إرساله عبر واتساب مباشرة</a>.</p>
+    </form>
+    <aside class="summary" aria-label="ملخص الطلب"><h2>ملخص الطلب</h2>
+      <ul id="summary-list" class="summary-list"></ul>
+      <div class="total"><span>المجموع الكلي</span><span id="grand"></span></div>
+      <a class="link-btn" href="cart.html">تعديل السلة</a>
+    </aside>
+  </div>
+</main>
+<footer id="site-footer" class="site-footer"></footer>
+<script type="module" src="assets/js/pages/checkout.js"></script>
+</body>
+</html>
